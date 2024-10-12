@@ -1,5 +1,6 @@
 import { Link, Outlet } from "react-router-dom"
 import { Logo } from "@/components/Logo"
+import NavMenu from "@/components/NavMenu"
 
 export const AppLayout = () => {
   return (
@@ -11,6 +12,7 @@ export const AppLayout = () => {
                         <Logo />
                     </Link>
                 </div>
+                <NavMenu/>
             </div>
         </header>
         
