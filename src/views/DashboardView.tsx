@@ -1,7 +1,6 @@
 import { getProjects } from "@/services/ProjectAPI"
 import { useQuery } from "@tanstack/react-query"
 import { Link } from "react-router-dom"
-import { ProjectFormData } from "types"
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
@@ -64,7 +63,7 @@ export const DashboardView = () => {
                                               </Link>
                                           </Menu.Item>
                                           <Menu.Item>
-                                              <Link to={``}
+                                              <Link to={`/projects/${project._id}/edit`}
                                                   className='block px-3 py-1 text-sm leading-6 text-gray-900'>
                                               Editar Proyecto
                                               </Link>
