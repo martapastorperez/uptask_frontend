@@ -3,20 +3,7 @@ import api from "../lib/axios";
 import { Project, ProjectFormData, dashboaardProjectSchema } from "../types";
 
 
-export async function getProjects() {
-    try {
-        const {data}= await api.get('/projects') 
-        const response=dashboaardProjectSchema.safeParse(data)
-        if(response.success){
-             return response.data
-        }
-       
-    } catch (error) {
-        if (isAxiosError(error)&& error.response) {
-           throw new Error (error.response.data.error)
-        }        
-    }
-}
+
 
 export async function createProject(formData:ProjectFormData) {
     try {
@@ -30,6 +17,27 @@ export async function createProject(formData:ProjectFormData) {
     }
 }
 
+
+export async function getProjects() {
+    try {
+        const { data } = await api('/projects')
+        console.log(data);
+        
+        const response = dashboaardProjectSchema.safeParse(data)
+        console.log(response);
+        
+        if(response.success) {
+            return response.data
+        }  else {
+            console.error("Validation failed:", response.error);
+            throw new Error("La validación de los datos del proyecto falló");
+        }
+    } catch (error) {
+        if(isAxiosError(error) && error.response) {
+            throw new Error(error.response.data.error)
+        }
+    }
+}
 
 export async function getProjectsById(id:Project['_id']) {
     try {
@@ -58,3 +66,13 @@ export async function updateProject({formData,projectId}:projectAPIType) {
     }
 }
 
+export async function deleteProject(id:Project['_id']) {
+    try {
+        const {data}= await api.delete<string>(`/projects/${id}`) 
+       return data
+    } catch (error) {
+        if (isAxiosError(error)&& error.response) {
+           throw new Error (error.response.data.error)
+        }        
+    }
+}
