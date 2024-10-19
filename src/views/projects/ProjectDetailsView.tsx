@@ -35,7 +35,7 @@ export const ProjectDetailsView = () => {
                     >Colaboradores</Link>
                 </nav>
           
-        <AddTaskModal/>
+        <AddTaskModal projectId={projectId}/>
            
     </>
   )
