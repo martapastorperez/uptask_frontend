@@ -1,4 +1,5 @@
 import AddTaskModal from "@/components/tasks/AddTaskModal";
+import { TaskList } from "@/components/tasks/TaskList";
 import { getProjectsById } from "@/services/ProjectAPI";
 import { useQuery } from "@tanstack/react-query";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom"
@@ -34,8 +35,9 @@ export const ProjectDetailsView = () => {
                         className="bg-fuchsia-600 hover:bg-fuchsia-700 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors"
                     >Colaboradores</Link>
                 </nav>
-          
+        <TaskList tasks={data.tasks}/>
         <AddTaskModal projectId={projectId}/>
+        
            
     </>
   )
