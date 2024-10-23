@@ -22,8 +22,6 @@ export async function createTask({projectId, formData}:Pick<taskAPIType,'formDat
 export async function getTaskById({projectId,taskId}:Pick<taskAPIType, 'projectId'|'taskId'>) {
     try {
         const {data}= await api.get(`/projects/${projectId}/task/${taskId}`) 
-        console.log(data);
-        
        return data
     } catch (error) {
         if (isAxiosError(error)&& error.response) {
@@ -31,3 +29,16 @@ export async function getTaskById({projectId,taskId}:Pick<taskAPIType, 'projectI
         }        
     }
 }
+
+
+export async function updateTask({projectId, taskId,formData}:Pick<taskAPIType, 'projectId'|'taskId'|'formData'>){
+    try {
+        const {data}= await api.put<string>(`/projects/${projectId}/task/${taskId}`, formData)
+        return data
+    } catch (error) {
+        if (isAxiosError(error) && error.response) {
+            throw new Error (error.response.data.error)
+        }
+    }
+}
+
