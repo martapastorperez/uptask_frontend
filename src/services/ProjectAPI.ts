@@ -21,11 +21,7 @@ export async function createProject(formData:ProjectFormData) {
 export async function getProjects() {
     try {
         const { data } = await api('/projects')
-        console.log(data);
-        
         const response = dashboaardProjectSchema.safeParse(data)
-        console.log(response);
-        
         if(response.success) {
             return response.data
         }  else {
