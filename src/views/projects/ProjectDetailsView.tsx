@@ -1,6 +1,7 @@
 import AddTaskModal from "@/components/tasks/AddTaskModal";
 import { EditTaskData } from "@/components/tasks/EditTaskData";
 import { TaskList } from "@/components/tasks/TaskList";
+import TaskModalDetails from "@/components/tasks/TaskModalDetails";
 import { getProjectsById } from "@/services/ProjectAPI";
 import { useQuery } from "@tanstack/react-query";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom"
@@ -40,6 +41,7 @@ export const ProjectDetailsView = () => {
         <AddTaskModal projectId={projectId}/>
         
         <EditTaskData projectId={projectId}/>   
+        <TaskModalDetails/>
     </>
   )
 }

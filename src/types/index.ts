@@ -9,6 +9,8 @@ export const TaskSchema=z.object({
     description:z.string(),
     project:z.string(),
     status:taskStatusSchema,
+    createdAt:z.string(),
+    updatedAt:z.string()
 })
 
 export type Task=z.infer<typeof TaskSchema>

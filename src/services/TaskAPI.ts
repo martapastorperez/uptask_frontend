@@ -1,5 +1,5 @@
 import api from "@/lib/axios"
-import { Project, Task, TaskFormData } from "../types"
+import { Project, Task, TaskFormData, TaskSchema } from "../types"
 import { isAxiosError } from "axios"
 
 type taskAPIType={
@@ -22,7 +22,13 @@ export async function createTask({projectId, formData}:Pick<taskAPIType,'formDat
 export async function getTaskById({projectId,taskId}:Pick<taskAPIType, 'projectId'|'taskId'>) {
     try {
         const {data}= await api.get(`/projects/${projectId}/task/${taskId}`) 
-       return data
+        const response =TaskSchema.safeParse(data)
+       if(response.success) {
+        return response.data
+    }  else {
+        console.error("Validation failed:", response.error);
+        throw new Error("La validación de los datos del proyecto falló");
+    }
     } catch (error) {
         if (isAxiosError(error)&& error.response) {
            throw new Error (error.response.data.error)
