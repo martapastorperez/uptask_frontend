@@ -6,6 +6,7 @@ type taskAPIType={
     projectId:Project['_id'],
     formData:TaskFormData,
     taskId:Task['_id']
+    status: Task['status']
 }
 
 export async function createTask({projectId, formData}:Pick<taskAPIType,'formData'|'projectId'>) {
@@ -51,7 +52,7 @@ export async function updateTask({projectId, taskId,formData}:Pick<taskAPIType, 
 
 export async function deleteTask({projectId, taskId}:Pick<taskAPIType, 'projectId'|'taskId'>) {
     try {
-        const {data}=await api.delete<string>(`projects/${projectId}/task/${taskId}`)
+        const {data}=await api.delete<string>(`/projects/${projectId}/task/${taskId}`)
         return data
     } catch (error) {
         if (isAxiosError(error) && error.response) {
@@ -59,4 +60,15 @@ export async function deleteTask({projectId, taskId}:Pick<taskAPIType, 'projectI
         }
     }
     
+}
+
+export async function updateStatus({projectId, taskId, status}:Pick<taskAPIType, 'projectId'|'taskId'|'status'>){
+    try {
+        const {data} =await api.post<string>(`/projects/${projectId}/task/${taskId}/status`, {status})
+        return data
+    } catch (error) {
+        if (isAxiosError(error) && error.response) {
+            throw new Error (error.response.data.error)
+        }
+    }
 }
