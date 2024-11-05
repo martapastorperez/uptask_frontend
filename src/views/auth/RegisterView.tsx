@@ -27,7 +27,7 @@ export const RegisterView = () => {
         onSuccess:(data)=>{
             toast.success(data)
             reset()
-            navigate('/auth/login')
+            //navigate('/auth/login')
         }
       })
     
