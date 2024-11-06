@@ -1,5 +1,5 @@
 import api from "@/lib/axios"
-import { ConfirmToken, RequestConfirmationCodeForm, UserRegistrationForm } from "../types"
+import { ConfirmToken, RequestConfirmationCodeForm, UserLoginForm, UserRegistrationForm } from "../types"
 import { isAxiosError } from "axios"
 
 
@@ -36,3 +36,16 @@ export async function requestToken(formData:RequestConfirmationCodeForm){
         }
     }
 }
+
+
+export async function login(formData:UserLoginForm){
+    try {
+        const {data}=await api.post<string>('/auth/login', formData)
+        return data
+    } catch (error) {
+        if(isAxiosError(error)&& error.response){
+            throw new Error(error.response.data.error)
+        }
+    }
+}
+

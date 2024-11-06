@@ -3,11 +3,13 @@ import { ConfirmToken } from '@/types/index'
 import { useMutation } from '@tanstack/react-query'
 import { useState } from 'react'
 import PinInput from 'react-pin-input'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 
 export const ConfirmAccountView = () => {
+
+    const navigate=useNavigate()
 
     const [token, setToken]=useState<ConfirmToken['token']>('')
 
@@ -18,6 +20,7 @@ export const ConfirmAccountView = () => {
         },
         onSuccess:(data)=>{            
             toast.success(data)
+            navigate('/auth/login')
         }
     })
 
