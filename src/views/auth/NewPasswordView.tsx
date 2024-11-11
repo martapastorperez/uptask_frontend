@@ -15,7 +15,7 @@ export const NewPAsswordView = () => {
             <span className=" text-fuchsia-500 font-bold"> por email</span>
         </p>
 
-        {!isvalidToken ? <NewPasswordToken token={token} setToken={setToken} setIsValidToken={setIsValidToken}/> : <NewPasswordForm/>}
+        {!isvalidToken ? <NewPasswordToken token={token} setToken={setToken} setIsValidToken={setIsValidToken}/> : <NewPasswordForm token={token}/>}
     
     </>
   )
