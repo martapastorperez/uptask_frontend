@@ -60,3 +60,13 @@ export async function forgotPassword(formData:ForgotPasswordForm){
     }
 }
 
+export async function validateToken(formData:ConfirmToken){
+    try {
+        const {data}=await api.post<string>('/auth/validate-token', formData)
+        return data
+    } catch (error) {
+        if(isAxiosError(error)&& error.response){
+            throw new Error(error.response.data.error)
+        }
+    }
+}

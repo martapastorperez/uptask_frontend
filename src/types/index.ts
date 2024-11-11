@@ -15,6 +15,7 @@ export type UserRegistrationForm=Pick<Auth, 'name'|'email'|'password'|'password_
 export type ConfirmToken=Pick<Auth,'token'>
 export type RequestConfirmationCodeForm=Pick<Auth, 'email'>
 export type ForgotPasswordForm=Pick<Auth, 'email'>
+export type NewPasswordFormType=Pick<Auth, 'password'|'password_confirmation'>
 
 
 /**Tasks */
