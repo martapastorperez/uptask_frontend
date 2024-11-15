@@ -22,8 +22,7 @@ export const LoginView = () => {
         toast.error(error.message)
     },
     onSuccess:()=>{
-        toast.success('Iniciando sesion...')
-        //navigate('/')
+        navigate('/')
     }
   })
 
