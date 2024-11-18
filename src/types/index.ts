@@ -64,3 +64,14 @@ export type Project= z.infer<typeof ProjectSchema>
 
 export type ProjectFormData = Pick<Project, 'clientName' | 'projectName' |  'description'>
 
+
+
+/**teams */
+const teamMemberSchema=userSchema.pick({
+    email:true,
+    name:true,
+    _id:true
+})
+
+export type TeamMember= z.infer<typeof teamMemberSchema>
+export type teamMemberForm=Pick<TeamMember, 'email'>
