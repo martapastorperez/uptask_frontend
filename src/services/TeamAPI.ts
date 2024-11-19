@@ -38,3 +38,14 @@ export async function listMembers( projectId:Project['_id']  ) {
         }        
     }
 }
+
+export async function deleteMember({projectId,id}:{ projectId:Project['_id'],id:TeamMember['_id']}) {
+    try {
+        const {data}= await api.delete(`/projects/${projectId}/team/${id}`)
+        return data
+    } catch (error) {
+        if (isAxiosError(error)&& error.response) {
+           throw new Error (error.response.data.error)
+        }        
+    }
+}

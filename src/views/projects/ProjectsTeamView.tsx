@@ -1,16 +1,27 @@
 import { AddMemberModal } from "@/components/team/AddMemberModal"
-import { listMembers } from "@/services/TeamAPI"
+import { deleteMember, listMembers } from "@/services/TeamAPI"
 import { Menu, Transition } from "@headlessui/react"
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid"
-import { useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery } from "@tanstack/react-query"
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom"
 import { Fragment } from "react"
+import { toast } from "react-toastify"
 
 export const ProjectsTeamView = () => {
 
     const navigate=useNavigate()
     const params=useParams()
     const projectId=params.projectId!
+
+    const {mutate}=useMutation({
+        mutationFn:deleteMember,
+        onError:(error)=>{
+            toast.error(error.message)
+        },
+        onSuccess:(data)=>{
+            toast.success(data)
+        }
+    })
     
     const {data, isLoading,isError}=useQuery({
         queryKey:['projectTeam',projectId],
@@ -19,6 +30,7 @@ export const ProjectsTeamView = () => {
     })
 
 
+  
 if(isLoading) return 'Cargando...'
 if (isError) return <Navigate to={'/404'}/>
 if(data) return (
@@ -77,6 +89,7 @@ if(data) return (
                                                 <button
                                                     type='button'
                                                     className='block px-3 py-1 text-sm leading-6 text-red-500'
+                                                    onClick={()=>mutate({projectId, id:member._id})}
                                                 >
                                                     Eliminar del Proyecto
                                                 </button>
