@@ -89,6 +89,17 @@ export default function TaskModalDetails() {
                                     >{data.name}
                                     </Dialog.Title>
                                     <p className='text-lg text-slate-500 mb-2'>Descripción: {data.description}</p>
+                                  
+                                    <p className='font-bold text-2xl text-slate-600 my-5'>Historial de Cambios</p>
+                                    <ul className=' list-decimal ml-4'>
+                                        {data.completed_by.map((activityLog)=> (
+                                            <li key={activityLog._id}>
+                                                <span className='font-bold text-slate-600'>
+                                                    {statusTranslations[activityLog.status]}
+                                                </span>{' '} por: {activityLog.user.name}
+                                            </li>
+                                        ))}
+                                    </ul>                                  
                                     <div className='my-5 space-y-3'>
                                         <label className='font-bold'>Estado Actual:  </label>
                                         <select className='w-full p-3 bg-white border border-gray-300' defaultValue={data.status} onChange={handleChange}>
