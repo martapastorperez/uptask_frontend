@@ -47,6 +47,17 @@ export const TaskSchema=z.object({
 export type Task=z.infer<typeof TaskSchema>
 export type TaskFormData= Pick<Task,'name'| 'description'>
 
+/**Notes */
+const notesSchema=z.object({
+    _id:z.string(),
+    content:z.string(),
+    createdBy:userSchema,
+    task:z.string()
+})
+
+export type Note=z.infer<typeof notesSchema>
+export type NoteFormData= Pick<Note,'content'>
+
 
 /**Projects */
 export const ProjectSchema = z.object({
