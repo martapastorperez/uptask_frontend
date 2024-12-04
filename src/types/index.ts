@@ -18,6 +18,7 @@ export type RequestConfirmationCodeForm=Pick<Auth, 'email'>
 export type ForgotPasswordForm=Pick<Auth, 'email'>
 export type NewPasswordFormType=Pick<Auth, 'password'|'password_confirmation'>
 export type UpdateCurrentUserPasswordForm=Pick<Auth, 'current_password'|'password'|'password_confirmation'>
+export type checkPasswordForm=Pick<Auth, 'password'>
 
 /**Users */
 export const userSchema=authSchema.pick({
