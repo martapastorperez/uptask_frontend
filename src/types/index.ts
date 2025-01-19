@@ -73,7 +73,7 @@ export type Task=z.infer<typeof TaskSchema>
 export type TaskFormData= Pick<Task,'name'| 'description'>
 export type TaskProject=z.infer<typeof taskProjectSchema>
 
-/**Projects */
+/**Projects types */
 export const ProjectSchema = z.object({
     _id:z.string(),
     projectName:z.string(),
